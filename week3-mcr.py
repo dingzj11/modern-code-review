@@ -1,25 +1,26 @@
 def is_win(game):
-    win = False
-    # Check rows
-    if game[0][0] == game[0][1] == game[0][2] and (game[0][0] == 'X' or game[0][0] == 'O'):
-        win = True
-    if game[1][0] == game[1][1] == game[1][2] and (game[1][0] == 'X' or game[1][0] == 'O'):
-        win = True
-    if game[2][0] == game[2][1] == game[2][2] and (game[2][0] == 'X' or game[2][0] == 'O'):
-        win = True
-    # Check columns
-    if game[0][0] == game[1][0] == game[2][0] and (game[0][0] == 'X' or game[0][0] == 'O'):
-        win = True
-    if game[0][1] == game[1][1] == game[2][1] and (game[0][1] == 'X' or game[0][1] == 'O'):
-        win = True
-    if game[0][2] == game[1][2] == game[2][2] and (game[0][2] == 'X' or game[0][2] == 'O'):
-        win = True
-    # Check diagonals
-    if game[0][0] == game[1][1] == game[2][2] and (game[0][0] == 'X' or game[0][0] == 'O'):
-        win = True
-    if game[0][2] == game[1][1] == game[2][0] and (game[0][2] == 'X' or game[0][2] == 'O'):
-        win = True
-    return win
+    """
+    检查游戏是否有获胜者
+    参数: game - 3x3的游戏棋盘
+    返回: True如果有获胜者，False否则
+    """
+    # 检查行
+    for row in game:
+        if row[0] == row[1] == row[2] and row[0] in ['X', 'O']:
+            return True
+    
+    # 检查列
+    for col in range(3):
+        if game[0][col] == game[1][col] == game[2][col] and game[0][col] in ['X', 'O']:
+            return True
+    
+    # 检查对角线
+    if game[0][0] == game[1][1] == game[2][2] and game[0][0] in ['X', 'O']:
+        return True
+    if game[0][2] == game[1][1] == game[2][0] and game[0][2] in ['X', 'O']:
+        return True
+    
+    return False
 
 def main():
     game = [[' ' for _ in range(3)] for _ in range(3)]  # Tic-tac-toe board
